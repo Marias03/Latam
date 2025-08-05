@@ -1,0 +1,59 @@
+// 1. Configuración inicial
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // o "mysql" según tu DB
+  url      = env("DATABASE_URL")
+}
+
+// 2. Modelo de Usuario (Admin)
+model User {
+  id        String   @id @default(uuid()) // ID único
+  email     String   @unique // Email único
+  password  String   // Contraseña encriptada
+  name      String?  // Nombre opcional
+  role      String   @default("ADMIN") // Rol fijo
+  createdAt DateTime @default(now()) // Fecha creación
+  updatedAt DateTime @updatedAt // Fecha actualización
+
+  // Relaciones
+  events    Event[]  // Relación con eventos creados
+  Session   Session[]
+
+  // Índices para mejor performance
+  @@index([email])
+  @@index([role])
+}
+
+// 3. Modelo para sesiones activas (Opcional)
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}
+
+// 4. Modelo de Eventos
+model Event {
+  id          String   @id @default(uuid())
+  name        String   // Nombre del evento
+  location    String   // Lugar del evento
+  date        DateTime // Fecha del evento
+  description String   @db.Text // Descripción larga
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relación con el usuario que creó el evento
+  createdBy   String
+  user        User     @relation(fields: [createdBy], references: [id])
+  
+  @@index([createdBy])
+  @@index([date])
+}

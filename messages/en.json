@@ -1,0 +1,144 @@
+{
+  "Home": {
+    "hero": {
+      "title": "Welcome to our association of Latin American countries",
+      "subtitle": "you count on our support",
+      "description": "Be part of our adventure!",
+      "joinButton": "Join Telegram",
+      "learnMoreButton": "Learn More"
+    },
+    "features": {
+      "title": "Our Advantages",
+      "culturalIntegration": {
+        "title": "Cultural Integration",
+        "description": "programs to adapt yourself"
+      },
+      "community": {
+        "title": "Supportive Community",
+        "description": "About uss"
+      }
+    },
+    "events": {
+      "title": "Upcoming Events",
+      "latinoNight": {
+        "date": "Soon",
+        "title": "Soon",
+        "description": "Soon"
+      },
+      "russianWorkshop": {
+        "date": "Soon",
+        "title": "Soon",
+        "description": "Soon"
+      }
+    }
+  },
+  
+  "Events": {
+    "title": "Upcoming Events",
+    "loading": "Loading events...",
+    "location": "Location",
+    "latinoNight": {
+      "title": "Latin Night",
+      "location": "Kazan Cultural Center",
+      "description": "A night full of Latin music, dance, and cuisine. Don't miss it!"
+    },
+    "russianWorkshop": {
+      "title": "Russian Language Workshop",
+      "location": "Kazan Federal University",
+      "description": "Learn basic Russian to facilitate your integration into everyday life."
+    }
+  },
+
+  "About": {
+    "title": "About Us",
+    "imageAlt": "Company logo",
+    "nav": {
+      "history": "History",
+      "mission": "Mission",
+      "vision": "Vision",
+      "values": "Values"
+    },
+    "introTitle": "Our Association",
+    "introText1": "We are a team dedicated to providing support, solutions and opportunities.",
+    "introText2": "We love representing our Latin American culture.",
+    "history": {
+      "title": "Our History",
+      "content1": "The Association of Latin American Countries of Kazan was born in 2022 as a result of the joint efforts of several Latin American students residing in the city. Initially they focused on organizing dances, cultural presentations and other activities that would allow them to feel more connected to their cultural heritage.",
+      "content2": "Over time, they identified the need for an organization that would unite Latin students to promote their talents and culture. Since then, we have worked tirelessly to create educational and cultural opportunities that support our members.",
+      "milestones": "Important Achievements",
+      "milestone1": "2022: Foundation of the Association",
+      "milestone2": "2024: Celebration of the first Latin America Day and first sports event",
+      "milestone3": "2020: First Latin American beauty pageant"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "statement": "Our mission is to support and accompany Latin American students during their adaptation in Russia. We are committed to promoting, teaching and preserving the rich Latin American culture, thus strengthening a sense of identity and belonging."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "statement": "In the near future we see ourselves established as a leading association in Kazan for Latin American students. We want to be recognized for providing a welcoming environment where each student feels accompanied during their academic process while continuing to proudly share our diverse cultural heritage."
+    },
+    "values": {
+      "title": "Our Values",
+      "value1Title": "Integrity",
+      "value1Desc": "We act with honesty and transparency in everything we do.",
+      "value2Title": "Innovation",
+      "value2Desc": "We constantly seek ways to demonstrate our culture.",
+      "value3Title": "Excellence",
+      "value3Desc": "We strive for the highest quality in all our events.",
+      "value4Title": "Responsibility",
+      "value4Desc": "We care about supporting and welcoming our Latin American students.",
+      "value5Title": "Teamwork",
+      "value5Desc": "We value collaboration and mutual respect."
+    },
+    "footer": {
+      "text": "Contact us for more information",
+      "homeLink": "Back to home"
+    }
+  },
+
+  "CulturalIntegration": {
+    "title": "Living Cultural Fusion",
+    "subtitle": "Where rhythms come alive",
+    "nav": {
+      "title": "Our Programs",
+      "swing": "Latin Dance Collective",
+      "voces": "Andean Vocal Group",
+      "slogan": "Join the celebration!"
+    },
+    "howToJoin": "How to participate?",
+    "contactButton": "Contact Us",
+    "footer": {
+      "text": "Representing our culture",
+      "homeLink": "Back to home"
+    },
+    "swing": {
+      "title": "Dance Collective",
+      "imageAlt": "Group dancing salsa at sunset",
+      "description1": "Immerse yourself in the contagious energy of tropical music. From salsa to bachata, our dances take you on a journey through Latin America's most vibrant rhythms.",
+      "description2": "We provide a family-friendly environment where passion for dance unites us.",
+      "joinInfo": "Join our collective"
+    },
+    "voces": {
+      "title": "Vocal Group",
+      "imageAlt": "Musicians performing ancestral melodies",
+      "description1": "Revaluing Latin America's musical roots through experiential workshops with traditional instruments and ancestral techniques.",
+      "description2": "Learn charango, quena and vocal harmonies in an intergenerational cultural exchange space.",
+      "joinInfo": "Show your talent"
+    }
+  },
+
+  "SupportCommunity": {
+    "universityReps": "University Representatives",
+    "countryLeaders": "Country Leaders",
+    "associationLeaders": "Latin American Association",
+    "colombianCommunity": "Colombian Community",
+    "ecuadorianCommunity": "Ecuadorian Community",
+    "communityLeaders": "Community Leaders",
+    "contactTelegram": "Contact via Telegram",
+    "footer": {
+      "text": "© 2023 Latin American Student Association in Russia",
+      "homeLink": "Back to home"
+    }
+  }
+}
