@@ -32,9 +32,10 @@
       }
     }
   },
-  
+
   "Events": {
     "title": "Próximos Eventos",
+    "description": "Estamos trabajando en nuevas experiencias",
     "loading": "Cargando eventos...",
     "location": "Ubicación",
     "latinoNight": {

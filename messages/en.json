@@ -32,10 +32,11 @@
       }
     }
   },
-  
+
   "Events": {
     "title": "Upcoming Events",
     "loading": "Loading events...",
+    "description": "We are working on new experiences",
     "location": "Location",
     "latinoNight": {
       "title": "Latin Night",

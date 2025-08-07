@@ -43,17 +43,15 @@ model Session {
 // 4. Modelo de Eventos
 model Event {
   id          String   @id @default(uuid())
-  name        String   // Nombre del evento
-  location    String   // Lugar del evento
-  date        DateTime // Fecha del evento
-  description String   @db.Text // Descripción larga
+  name        String
+  location    String
+  date        DateTime
+  description String   @db.Text
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
-  // Relación con el usuario que creó el evento
   createdBy   String
   user        User     @relation(fields: [createdBy], references: [id])
-  
+
   @@index([createdBy])
   @@index([date])
 }
