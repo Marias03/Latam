@@ -30,7 +30,8 @@
         "title": "скоро",
         "description": "скоро"
       }
-    }
+    },
+    "footer": { "text": "Разработано:MARIA JULIANA A." }
   },
 
   "Events": {

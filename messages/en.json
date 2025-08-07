@@ -30,7 +30,8 @@
         "title": "Soon",
         "description": "Soon"
       }
-    }
+    },
+    "footer": { "text": "Developed by: MARIA JULIANA A." }
   },
 
   "Events": {
