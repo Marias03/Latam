@@ -99,12 +99,6 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
             <p className="text-blue-100 font-medium">{t("footer.text")}</p>
             <div className="hidden md:block w-1 h-6 bg-blue-400 rounded-full"></div>
-            <Link
-              href="/"
-              className="text-white hover:text-blue-200 underline transition-colors duration-300"
-            >
-              {t("footer.homeLink")}
-            </Link>
           </div>
         </div>
       </footer>
