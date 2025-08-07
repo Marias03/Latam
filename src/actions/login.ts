@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/lib/supabase";
+import { cookies } from "next/headers";
 
 export async function login(
   _state: any,
@@ -30,6 +31,16 @@ export async function login(
         status: 401,
       };
     }
+
+    const token = crypto.randomUUID();
+    (await cookies()).set("user_token", token);
+
+    await supabase
+      .from("users")
+      .update({
+        token,
+      })
+      .eq("id", user.data.id);
 
     return {
       user: user.data,
