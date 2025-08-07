@@ -94,6 +94,18 @@ export default function Home() {
 
       {/* Events Section */}
       <EventSection />
+      <footer className="bg-blue-800 text-white py-6">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm md:text-base">
+            {t("footer.developedBy")}{" "}
+            <span className="font-semibold">Maria Juliana Arias</span>
+          </p>
+          <div className="flex justify-center items-center mt-2 gap-4">
+            <span className="text-xs md:text-sm">Next.js</span>
+            <span className="text-xs md:text-sm">18in</span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

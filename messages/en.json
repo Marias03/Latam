@@ -29,6 +29,9 @@
         "date": "Soon",
         "title": "Soon",
         "description": "Soon"
+      },
+      "footer": {
+        "developedBy": "Developed by"
       }
     }
   },
