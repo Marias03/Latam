@@ -96,7 +96,7 @@ const universityReps: Representative[] = [
     university: "КНИТУ",
     photo: Image6,
     description: "Representante",
-    telegram: "@sofiinov",
+    telegram: "@Yoyo2205va",
   },
 ];
 
