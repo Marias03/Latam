@@ -4,25 +4,23 @@ import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/actions/login";
 
-
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
 
-  
-  const [{message, status}, formAction] = useActionState(login, {
+  const [{ message, status }, formAction] = useActionState(login, {
     message: "",
     status: 0,
     user: null,
   });
 
   useEffect(() => {
-    if(status === 200) {
+    if (status === 200) {
       router.push("/admin-auth/dashboard");
     }
-  }, [message])
+  }, [message]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">

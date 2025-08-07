@@ -1,8 +1,6 @@
 "use server";
 
-import prisma from "@/lib/prisma";
 import { supabase } from "@/lib/supabase";
-import { compare } from "bcryptjs";
 
 export async function login(
   _state: any,
@@ -12,18 +10,13 @@ export async function login(
     const email = form.get("email") as string;
     const password = form.get("password") as string;
 
-    console.log("dwqdqwd");
-    console.log(email);
-
     const user = await supabase
       .from("users")
       .select("*")
       .eq("email", email)
-      .single();
+      .maybeSingle();
 
-    console.log(user);
-
-    if (!user) {
+    if (!user.data) {
       return {
         message: "Credenciales inválidas o no tienes privilegios",
         status: 401,
@@ -38,10 +31,8 @@ export async function login(
       };
     }
 
-    const { password: _, ...userData } = user.data;
-
     return {
-      user: userData,
+      user: user.data,
       message: "signed in",
       status: 200,
     };
