@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 import prisma from "./prisma";
+import { supabase } from "./supabase";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,21 +18,21 @@ export const authOptions: NextAuthOptions = {
         }
 
         // Buscar usuario por email y rol ADMIN
-        const user = await prisma.user.findUnique({
-          where: { 
-            email: credentials.email,
-            role: "ADMIN"
-          },
-        });
+        const user = await supabase
+          .from("users")
+          .select("*")
+          .eq("email", credentials.email)
+          .eq("role", "ADMIN")
+          .single();
 
-        if (!user) {
+        if (!user.data) {
           return null;
         }
 
         // Verificar contraseña
         const isPasswordValid = await compare(
           credentials.password,
-          user.password
+          user.data.password
         );
 
         if (!isPasswordValid) {
@@ -40,10 +41,10 @@ export const authOptions: NextAuthOptions = {
 
         // Retornar usuario sin contraseña
         return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
+          id: user.data.id,
+          email: user.data.email,
+          name: user.data.name,
+          role: user.data.role,
         };
       },
     }),
