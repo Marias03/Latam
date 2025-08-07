@@ -29,9 +29,9 @@
         "date": "Proximamente",
         "title": "Proximamente",
         "description": "Proximamente"
-      },
-      "footer": { "text": "Desarrollado por : MARIA JULIANA A." }
-    }
+      }
+    },
+    "footer": { "text": "Developed by: MARIA JULIANA A." }
   },
 
   "Events": {
