@@ -94,15 +94,17 @@ export default function Home() {
 
       {/* Events Section */}
       <EventSection />
-      <footer className="bg-blue-800 text-white py-6">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">
-            {t("footer.developedBy")}{" "}
-            <span className="font-semibold">Maria Juliana Arias</span>
-          </p>
-          <div className="flex justify-center items-center mt-2 gap-4">
-            <span className="text-xs md:text-sm">Next.js</span>
-            <span className="text-xs md:text-sm">18in</span>
+      <footer className="bg-blue-900 py-12 text-center">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+            <p className="text-blue-100 font-medium">{t("footer.text")}</p>
+            <div className="hidden md:block w-1 h-6 bg-blue-400 rounded-full"></div>
+            <Link
+              href="/"
+              className="text-white hover:text-blue-200 underline transition-colors duration-300"
+            >
+              {t("footer.homeLink")}
+            </Link>
           </div>
         </div>
       </footer>
