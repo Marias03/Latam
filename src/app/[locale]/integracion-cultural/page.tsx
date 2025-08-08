@@ -122,7 +122,7 @@ export default function CulturalIntegrationPage() {
                 />
               </div>
               <div className="absolute -bottom-5 -right-5 bg-sky-400 text-indigo-900 px-5 py-2 rounded-xl font-bold rotate-3 shadow-lg text-sm md:text-base">
-                ¡BAILA CON ALMA!
+                ¡BAILA CON EL ALMA!
               </div>
             </div>
             <div className="lg:w-1/2">
