@@ -1,0 +1,146 @@
+{
+  "Home": {
+    "hero": {
+      "title": "Bienvenidos  a Nuestra Asociacion  de paises latinoamericanos ",
+      "subtitle": " cuentas con nuestro apoyo",
+      "description": "se parte de nuestra aventura",
+      "joinButton": "Unirse a Telegram",
+      "learnMoreButton": "Saber Más"
+    },
+    "features": {
+      "title": "Nuestras Ventajas",
+      "culturalIntegration": {
+        "title": "Integración Cultural",
+        "description": "Programas para integrarte "
+      },
+      "community": {
+        "title": "Comunidad de Apoyo",
+        "description": "Conocenos"
+      }
+    },
+    "events": {
+      "title": "Próximos Eventos",
+      "latinoNight": {
+        "date": "Proximamente",
+        "title": "Proximamente",
+        "description": "Proximamente"
+      },
+      "russianWorkshop": {
+        "date": "Proximamente",
+        "title": "Proximamente",
+        "description": "Proximamente"
+      }
+    },
+    "footer": { "text": "Desarrollado por: MARIA JULIANA A." }
+  },
+
+  "Events": {
+    "title": "Próximos Eventos",
+    "description": "Estamos trabajando en nuevas experiencias",
+    "loading": "Cargando eventos...",
+    "location": "Ubicación",
+    "latinoNight": {
+      "title": "Noche Latina",
+      "location": "Centro Cultural de Kazán",
+      "description": "Una noche llena de música, baile y gastronomía latina. ¡No te lo pierdas!"
+    },
+    "russianWorkshop": {
+      "title": "Taller de Idioma Ruso",
+      "location": "Universidad Federal de Kazán",
+      "description": "Aprende ruso básico para facilitar tu integración en la vida cotidiana."
+    }
+  },
+
+  "About": {
+    "title": "Sobre Nosotros",
+    "imageAlt": "Logo de la empresa",
+    "nav": {
+      "history": "Historia",
+      "mission": "Misión",
+      "vision": "Visión",
+      "values": "Valores"
+    },
+    "introTitle": "Nuestra Asociacion",
+    "introText1": "Somos un equipo dedicado a brindar apoyo , soluciones y oportunidades.",
+    "introText2": "Amamos representar nuestra cultura Latinoamericana.",
+    "history": {
+      "title": "Nuestra Historia",
+      "content1": "La Asociación de Países Latinoamericanos de Kazán nació en el año 2022 como resultado del esfuerzo conjunto de varios estudiantes latinoamericanos residentes de la ciudad. Inicialmente se centraron en organizar bailes, presentaciones culturales y otras actividades que les permitieran sentirse más conectados con su herencia cultural.",
+      "content2": "Con el tiempo, identificaron la necesidad de una organización que uniera a los estudiantes latinos para promover sus talentos y cultura. Desde entonces, hemos trabajado incansablemente para crear oportunidades educativas y culturales que apoyen a nuestros miembros.",
+      "milestones": " Logros Importantes",
+      "milestone1": "2022: Fundación de la Asociacion",
+      "milestone2": "2024: Celebracion del primer dia de Latinoamerica y primer evento deportivo",
+      "milestone3": "2025: Primer reinado Latinoamericano"
+    },
+    "mission": {
+      "title": "Nuestra Misión",
+      "statement": "Nuestra misión es apoyar y acompañar a los estudiantes latinoamericanos durante su adaptación en Rusia. Nos comprometemos a promover, enseñar y preservar la rica cultura latinoamericana, fortaleciendo así un sentido de identidad y pertenencia."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "statement": "En el futuro cercano nos vemos consolidándonos como una asociación líder en Kazán para los estudiantes latinoamericanos. Queremos ser reconocidos por brindar un entorno acogedor donde cada estudiante se sienta acompañado durante su proceso académico mientras continúa compartiendo orgullosamente nuestra diversa herencia cultural."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "value1Title": "Integridad",
+      "value1Desc": "Actuamos con honestidad y transparencia en todo lo que hacemos.",
+      "value2Title": "Innovación",
+      "value2Desc": "Buscamos constantemente medios para demostrar nuestra cultura .",
+      "value3Title": "Excelencia",
+      "value3Desc": "Nos esforzamos por la más alta calidad en todos nuestros eventos .",
+      "value4Title": "Responsabilidad",
+      "value4Desc": "Nos preocupamos por apoyar y acoger a nuestros estudiantes Latinoamericanos.",
+      "value5Title": "Trabajo en Equipo",
+      "value5Desc": "Valoramos la colaboración y el respeto mutuo."
+    },
+    "footer": {
+      "text": "Contáctanos para más información",
+      "homeLink": "Volver al inicio"
+    }
+  },
+
+  "CulturalIntegration": {
+    "title": "Fusión Cultural Viva",
+    "subtitle": "Donde los ritmos cobran vida",
+    "nav": {
+      "title": "Nuestros Programas",
+      "swing": "Swing Latino",
+      "voces": "Voces Andinas",
+      "slogan": "¡Únete a la celebración!"
+    },
+    "howToJoin": "¿Cómo participar?",
+    "contactButton": "Contáctanos",
+    "footer": {
+      "text": "Representando nuesta cultura ",
+      "homeLink": "Volver al inicio"
+    },
+    "swing": {
+      "title": "Colectivo de baile ",
+      "imageAlt": "Grupo bailando salsa al atardecer",
+      "description1": "Sumérgete en la energía contagiosa de la música tropical. Desde salsa hasta bachata, nuestros bailes te llevan en un viaje por los ritmos más vibrantes de latinoamerica.",
+      "description2": " Contamos con un ambiente familiar donde la pasión por el baile nos une.",
+      "joinInfo": "haz parte de nuestro colectivo"
+    },
+    "voces": {
+      "title": "Grupo de canto",
+      "imageAlt": "Músicos interpretando melodías ancestrales",
+      "description1": "Revalorizando las raíces musicales de Latinoamerica  a través de talleres vivenciales con instrumentos tradicionales y técnicas ancestrales.",
+      "description2": "Aprende charango, quena y armonías vocales en un espacio de intercambio cultural intergeneracional.",
+      "joinInfo": "Demuestra tu talento"
+    }
+  },
+
+  "SupportCommunity": {
+    "universityReps": "Representantes Universitarios",
+    "countryLeaders": "Líderes de Países",
+    "associationLeaders": "Asociación Latinoamericana",
+    "colombianCommunity": "Comunidad Colombiana",
+    "ecuadorianCommunity": "Comunidad Ecuatoriana",
+    "communityLeaders": "Líderes de la Comunidad",
+    "contactTelegram": "Contactar por Telegram",
+    "footer": {
+      "text": "© 2023 Asociación Latinoamericana de Estudiantes en Rusia",
+      "homeLink": "Volver al inicio"
+    }
+  }
+}
