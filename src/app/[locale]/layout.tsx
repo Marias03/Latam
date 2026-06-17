@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import "@/globals.css";
+import "../../globals.css";
 import Navbar from "@/components/Public/navbar";
 import LoadingScreen from "@/components/LoadingScreen";
 
