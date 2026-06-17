@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import "../../globals.css";
 import Navbar from "@/components/Public/navbar";
 import LoadingScreen from "@/components/LoadingScreen";
+import ChatBotButton from "@/components/Public/ChatButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
           <LoadingScreen />
           <Navbar />
           {children}
+          <ChatBotButton />
         </NextIntlClientProvider>
       </body>
     </html>

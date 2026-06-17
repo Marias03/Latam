@@ -1,0 +1,206 @@
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+);
+
+type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
+
+async function getContextFromSupabase(question: string) {
+  const q = question.toLowerCase();
+  let context = "";
+
+  if (
+    q.includes("president") ||
+    q.includes("represent") ||
+    q.includes("país") ||
+    q.includes("pais") ||
+    q.includes("colombia") ||
+    q.includes("ecuador") ||
+    q.includes("venezuela") ||
+    q.includes("perú") ||
+    q.includes("peru") ||
+    q.includes("страна") ||
+    q.includes("представ")
+  ) {
+    const { data } = await supabase
+      .from("country_representatives")
+      .select("*, countries(name)");
+    if (data?.length) {
+      context += "\nREPRESENTANTES POR PAÍS:\n";
+      data.forEach((r: any) => {
+        context += `- ${r.countries?.name}: ${r.name} (${r.role}) Telegram: ${r.telegram || "N/A"}\n`;
+      });
+    }
+  }
+
+  if (
+    q.includes("universidad") ||
+    q.includes("kfu") ||
+    q.includes("kai") ||
+    q.includes("kiu") ||
+    q.includes("kgasu") ||
+    q.includes("university") ||
+    q.includes("универ")
+  ) {
+    const { data } = await supabase
+      .from("university_representatives")
+      .select("*, universities(name)");
+    if (data?.length) {
+      context += "\nREPRESENTANTES UNIVERSITARIOS:\n";
+      data.forEach((r: any) => {
+        context += `- ${r.universities?.name}: ${r.name} Telegram: ${r.telegram || "N/A"}\n`;
+      });
+    }
+  }
+
+  if (
+    q.includes("visa") ||
+    q.includes("registr") ||
+    q.includes("médic") ||
+    q.includes("medic") ||
+    q.includes("dactilosc") ||
+    q.includes("rvpo") ||
+    q.includes("documento") ||
+    q.includes("document") ||
+    q.includes("докум") ||
+    q.includes("виза") ||
+    q.includes("регист")
+  ) {
+    const { data: procedures } = await supabase.from("procedures").select("*");
+    const { data: docs } = await supabase
+      .from("required_documents")
+      .select("*, procedures(name)");
+
+    if (procedures?.length) {
+      context += "\nPROCEDIMIENTOS MIGRATORIOS:\n";
+      procedures.forEach((p: any) => {
+        context += `\n${p.name}:\n`;
+        context += `  Descripción: ${p.description || "N/A"}\n`;
+        context += `  Costo: ${p.cost || "N/A"}\n`;
+        context += `  Dirección: ${p.address || "N/A"}\n`;
+        context += `  Horario: ${p.schedule || "N/A"}\n`;
+        const procedureDocs = docs?.filter(
+          (d: any) => d.procedures?.name === p.name,
+        );
+        if (procedureDocs?.length) {
+          context += `  Documentos requeridos:\n`;
+          procedureDocs.forEach((d: any) => {
+            context += `    - ${d.name}\n`;
+          });
+        }
+      });
+    }
+  }
+
+  if (
+    q.includes("event") ||
+    q.includes("evento") ||
+    q.includes("actividad") ||
+    q.includes("событ")
+  ) {
+    const { data } = await supabase
+      .from("events")
+      .select("*")
+      .order("date", { ascending: true })
+      .limit(5);
+    if (data?.length) {
+      context += "\nEVENTOS PRÓXIMOS:\n";
+      data.forEach((e: any) => {
+        context += `- ${e.name} | Fecha: ${e.date || "Por confirmar"} | Lugar: ${e.location || "N/A"}\n`;
+      });
+    }
+  }
+
+  return context;
+}
+
+export async function POST(req: Request) {
+  try {
+    const { messages, locale } = await req.json();
+
+    if (!messages || !Array.isArray(messages)) {
+      return NextResponse.json(
+        { error: "Messages are required." },
+        { status: 400 },
+      );
+    }
+
+    const lastMessage = messages[messages.length - 1]?.content || "";
+    const context = await getContextFromSupabase(lastMessage);
+
+    const langInstruction =
+      locale === "ru"
+        ? "Responde siempre en ruso."
+        : locale === "en"
+          ? "Responde siempre en inglés."
+          : "Responde siempre en español.";
+
+    const SYSTEM_PROMPT = `
+Eres el asistente oficial de la Asociación Latinoamericana en Kazán, Rusia.
+${langInstruction}
+
+Tu trabajo es responder preguntas sobre:
+- Representantes por país y universidad
+- Trámites migratorios (visa, registración, exámenes médicos, dactiloscopia, RVPO)
+- Eventos de la asociación
+
+IMPORTANTE:
+- Solo usa la información que se te proporciona. No inventes datos.
+- Si no tienes información, sugiere contactar al representante.
+- Sé amable, claro y conciso.
+- Si te preguntan por un representante, da su nombre y Telegram.
+
+INFORMACIÓN ACTUAL:
+${context || "No se encontró información específica para esta consulta."}
+`;
+
+    const groqResponse = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "llama-3.1-8b-instant",
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            ...messages.map((m: Message) => ({
+              role: m.role,
+              content: m.content,
+            })),
+          ],
+          max_tokens: 1024,
+          temperature: 0.7,
+        }),
+      },
+    );
+
+    if (!groqResponse.ok) {
+      const err = await groqResponse.text();
+      console.error("Groq API error:", err);
+      return NextResponse.json(
+        { error: "Error al generar respuesta." },
+        { status: 500 },
+      );
+    }
+
+    const data = await groqResponse.json();
+    return NextResponse.json({
+      message: data.choices?.[0]?.message?.content || "Sin respuesta.",
+    });
+  } catch (error) {
+    console.error("Chat API error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong." },
+      { status: 500 },
+    );
+  }
+}
