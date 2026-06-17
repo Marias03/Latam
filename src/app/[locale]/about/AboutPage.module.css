@@ -1,0 +1,249 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page {
+  background: #0d0d0d;
+  color: #f5f0e8;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+.header {
+  background: #0d0d0d;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.headerLogo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 160, 32, 0.4);
+  object-fit: contain;
+}
+.headerTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  color: #fff;
+}
+.headerTitle span {
+  color: #e8a020;
+}
+
+.navTabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  background: #111;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.tab {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Inter", sans-serif;
+}
+.tab:hover {
+  background: rgba(196, 67, 10, 0.3);
+  border-color: #c4430a;
+  color: #fff;
+}
+.tabActive {
+  background: #c4430a !important;
+  border-color: #c4430a !important;
+  color: #fff !important;
+}
+
+.content {
+  background: #111;
+  padding: 2rem;
+}
+.section {
+  animation: fadeIn 0.5s ease;
+}
+
+.sectionTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  color: #fff;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.cardIcon {
+  font-size: 22px;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.cardTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8a020;
+  margin-bottom: 0.5rem;
+}
+.cardText {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+.timeline {
+  margin-top: 1.5rem;
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #222;
+}
+.tlItem {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.tlDot {
+  position: absolute;
+  left: -26px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.tlYear {
+  font-size: 11px;
+  color: #e8a020;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.tlText {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.misionBlock {
+  background: rgba(196, 67, 10, 0.1);
+  border-left: 4px solid #c4430a;
+  border-radius: 0 12px 12px 0;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.stat {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.statNum {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  color: #e8a020;
+}
+.statLabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 4px;
+}
+.visionText {
+  margin-top: 1.5rem;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+}
+
+.valoresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.valorCard {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+}
+.valorCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 160, 32, 0.3);
+}
+.valorBar {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+}
+.valorName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.valorDesc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .valoresGrid {
+    grid-template-columns: 1fr;
+  }
+  .headerTitle {
+    font-size: 16px;
+  }
+}

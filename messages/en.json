@@ -1,9 +1,20 @@
 {
+  "Navbar": {
+    "nosotros": "About",
+    "integracion": "Integration",
+    "comunidad": "Community",
+    "eventos": "Events"
+  },
+  "Loader": {
+    "title": "Association of",
+    "subtitle": "Latin American Countries",
+    "location": "Kazan · Russia"
+  },
   "Home": {
     "hero": {
-      "title": "Welcome to our association of Latin American countries",
-      "subtitle": "you count on our support",
-      "description": "Be part of our adventure!",
+      "title": "Welcome to our Association of Latin American countries",
+      "subtitle": "you can count on our support",
+      "description": "be part of our adventure",
       "joinButton": "Join Telegram",
       "learnMoreButton": "Learn More"
     },
@@ -11,46 +22,27 @@
       "title": "Our Advantages",
       "culturalIntegration": {
         "title": "Cultural Integration",
-        "description": "programs to adapt yourself"
+        "description": "Programs to integrate"
       },
       "community": {
-        "title": "Supportive Community",
-        "description": "About uss"
+        "title": "Support Community",
+        "description": "Get to know us"
       }
     },
-    "events": {
-      "title": "Upcoming Events",
-      "latinoNight": {
-        "date": "Soon",
-        "title": "Soon",
-        "description": "Soon"
-      },
-      "russianWorkshop": {
-        "date": "Soon",
-        "title": "Soon",
-        "description": "Soon"
-      }
-    },
-    "footer": { "text": "Developed by: MARIA JULIANA A." }
-  },
-
-  "Events": {
-    "title": "Upcoming Events",
-    "loading": "Loading events...",
-    "description": "We are working on new experiences",
-    "location": "Location",
-    "latinoNight": {
-      "title": "Latin Night",
-      "location": "Kazan Cultural Center",
-      "description": "A night full of Latin music, dance, and cuisine. Don't miss it!"
-    },
-    "russianWorkshop": {
-      "title": "Russian Language Workshop",
-      "location": "Kazan Federal University",
-      "description": "Learn basic Russian to facilitate your integration into everyday life."
+    "footer": {
+      "text": "Developed by: MARIA JULIANA A.",
+      "agenda": "Planner",
+      "upcomingEvents": "Upcoming",
+      "events": "Events",
+      "Coming soon": "Coming soon"
     }
   },
-
+  "Events": {
+    "title": "Upcoming Events",
+    "description": "We are working on new experiences",
+    "loading": "Loading events...",
+    "location": "Location"
+  },
   "About": {
     "title": "About Us",
     "imageAlt": "Company logo",
@@ -65,31 +57,31 @@
     "introText2": "We love representing our Latin American culture.",
     "history": {
       "title": "Our History",
-      "content1": "The Association of Latin American Countries of Kazan was born in 2022 as a result of the joint efforts of several Latin American students residing in the city. Initially they focused on organizing dances, cultural presentations and other activities that would allow them to feel more connected to their cultural heritage.",
-      "content2": "Over time, they identified the need for an organization that would unite Latin students to promote their talents and culture. Since then, we have worked tirelessly to create educational and cultural opportunities that support our members.",
-      "milestones": "Important Achievements",
+      "content1": "The Association of Latin American Countries of Kazan was born in 2022 as a result of the joint effort of several Latin American students living in the city.",
+      "content2": "Over time, they identified the need for an organization that would unite Latin American students to promote their talents and culture.",
+      "milestones": "Important Milestones",
       "milestone1": "2022: Foundation of the Association",
-      "milestone2": "2024: Celebration of the first Latin America Day and first sports event",
-      "milestone3": "2025: First Latin American beauty pageant"
+      "milestone2": "2024: First Latin America Day and first sporting event",
+      "milestone3": "2025: First Latin American pageant"
     },
     "mission": {
       "title": "Our Mission",
-      "statement": "Our mission is to support and accompany Latin American students during their adaptation in Russia. We are committed to promoting, teaching and preserving the rich Latin American culture, thus strengthening a sense of identity and belonging."
+      "statement": "Our mission is to support and accompany Latin American students during their adaptation in Russia."
     },
     "vision": {
       "title": "Our Vision",
-      "statement": "In the near future we see ourselves established as a leading association in Kazan for Latin American students. We want to be recognized for providing a welcoming environment where each student feels accompanied during their academic process while continuing to proudly share our diverse cultural heritage."
+      "statement": "In the near future we see ourselves consolidating as a leading association in Kazan for Latin American students."
     },
     "values": {
       "title": "Our Values",
       "value1Title": "Integrity",
       "value1Desc": "We act with honesty and transparency in everything we do.",
       "value2Title": "Innovation",
-      "value2Desc": "We constantly seek ways to demonstrate our culture.",
+      "value2Desc": "We constantly seek ways to showcase our culture.",
       "value3Title": "Excellence",
       "value3Desc": "We strive for the highest quality in all our events.",
       "value4Title": "Responsibility",
-      "value4Desc": "We care about supporting and welcoming our Latin American students.",
+      "value4Desc": "We care about supporting our Latin American students.",
       "value5Title": "Teamwork",
       "value5Desc": "We value collaboration and mutual respect."
     },
@@ -98,18 +90,17 @@
       "homeLink": "Back to home"
     }
   },
-
   "CulturalIntegration": {
     "title": "Living Cultural Fusion",
-    "subtitle": "Where rhythms come alive",
+    "subtitle": "Where rhythms come to life",
     "nav": {
       "title": "Our Programs",
-      "swing": "Latin Dance Collective",
-      "voces": "Andean Vocal Group",
+      "swing": "Latin Swing",
+      "voces": "Andean Voices",
       "slogan": "Join the celebration!"
     },
     "howToJoin": "How to participate?",
-    "contactButton": "Contact Us",
+    "contactButton": "Contact us",
     "footer": {
       "text": "Representing our culture",
       "homeLink": "Back to home"
@@ -117,19 +108,18 @@
     "swing": {
       "title": "Dance Collective",
       "imageAlt": "Group dancing salsa at sunset",
-      "description1": "Immerse yourself in the contagious energy of tropical music. From salsa to bachata, our dances take you on a journey through Latin America's most vibrant rhythms.",
-      "description2": "We provide a family-friendly environment where passion for dance unites us.",
+      "description1": "Immerse yourself in the infectious energy of tropical music.",
+      "description2": "We have a family atmosphere where passion for dance unites us.",
       "joinInfo": "Join our collective"
     },
     "voces": {
-      "title": "Vocal Group",
-      "imageAlt": "Musicians performing ancestral melodies",
-      "description1": "Revaluing Latin America's musical roots through experiential workshops with traditional instruments and ancestral techniques.",
-      "description2": "Learn charango, quena and vocal harmonies in an intergenerational cultural exchange space.",
+      "title": "Singing Group",
+      "imageAlt": "Musicians playing ancestral melodies",
+      "description1": "Revaluing the musical roots of Latin America through experiential workshops.",
+      "description2": "Learn charango, quena and vocal harmonies.",
       "joinInfo": "Show your talent"
     }
   },
-
   "SupportCommunity": {
     "universityReps": "University Representatives",
     "countryLeaders": "Country Leaders",

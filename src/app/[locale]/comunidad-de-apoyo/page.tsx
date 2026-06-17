@@ -132,13 +132,6 @@ const countryLeaders: CountryLeaders = {
       description: "Vicepresidente de la comunidad colombiana",
       telegram: "@el_rolito",
     },
-    {
-      role: "secretaria",
-      name: "LAURA ESQUIVEL",
-      photo: Image12,
-      description: "Secretaria de la comunidad colombiana",
-      telegram: "@Lalaesquivel",
-    },
   ],
   ecuador: [
     {

@@ -1,0 +1,137 @@
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes load {
+  to {
+    width: 100%;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.centerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logoLoader {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 2px solid rgba(232, 160, 32, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.logoLoader::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(196, 67, 10, 0.4);
+  animation: spin 8s linear infinite;
+}
+.logoLoader::after {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  border: 1px dashed rgba(232, 160, 32, 0.2);
+  animation: spin 14s linear infinite reverse;
+}
+.logoLoader img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.loaderTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  max-width: 260px;
+  animation: fadeUp 0.6s 0.5s ease both;
+}
+.loaderTitle span {
+  color: #e8a020;
+}
+
+.loaderSub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeUp 0.6s 0.7s ease both;
+}
+
+.progressWrap {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  animation: fadeUp 0.6s 0.8s ease both;
+}
+.progressBar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c4430a, #e8a020, #1a6b3a);
+  animation: load 2.3s ease forwards 0.5s;
+}
+
+.stripeBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  display: flex;
+}

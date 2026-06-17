@@ -3,13 +3,14 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import "@/globals.css";
-import LanguageSwitcher from "@/components/LocaleSwitcher"; // Asegúrate que la ruta es correcta
+import Navbar from "@/components/Public/navbar";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tu Aplicación",
-  description: "Descripción de tu aplicación",
+  title: "ASOPAIS LATAM",
+  description: "Asociación de estudiantes latinoamericanos en Kazán",
 };
 
 export default async function LocaleLayout({
@@ -30,10 +31,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${inter.className} relative min-h-screen`}>
+      <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <LoadingScreen />
+          <Navbar />
           {children}
-          <LanguageSwitcher />
         </NextIntlClientProvider>
       </body>
     </html>
