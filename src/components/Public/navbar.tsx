@@ -29,8 +29,6 @@ export default function Navbar() {
   const links = [
     { href: `/${currentLocale}/about`, label: t("nosotros") },
     { href: `/${currentLocale}/integracion-cultural`, label: t("integracion") },
-    { href: `/${currentLocale}/comunidad-de-apoyo`, label: t("comunidad") },
-    { href: `/${currentLocale}/eventos`, label: t("eventos") },
   ];
 
   return (
