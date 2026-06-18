@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 
 const SLIDE_COLORS = ["#C4622D", "#E8A020", "#1A6B3A", "#1B3A8C"];
 
@@ -263,7 +264,25 @@ export default function AboutPage() {
             </button>
           ))}
         </div>
-
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.4)",
+            textDecoration: "none",
+            marginBottom: "8px",
+            transition: "color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "rgba(255,255,255,0.4)")
+          }
+        >
+          ← {t("footer.homeLink")}
+        </Link>
         {/* Slide content */}
         <div key={current} className="slide-in">
           <div
