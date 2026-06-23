@@ -1,142 +1,293 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import EventFooter from "@/components/Public/EventFooter";
+import { bodyFont, headingFont } from "@/app/fonts";
+
+const tickerItems = [
+  "Integración Cultural",
+  "Swing Latino",
+  "Voces Andinas",
+  "Comunidad de Apoyo",
+  "КФУ · КИУ · КГЭУ · КГАСУ · КАИ",
+  "Kazán · Rusia",
+];
+
+const memberImages = [
+  {
+    src: "/amdrea.jpg",
+    alt: "amdrea",
+  },
+  {
+    src: "/lucela.jpg",
+    alt: "Lucela",
+  },
+  {
+    src: "/santiago.jpg",
+    alt: "Santiago",
+  },
+];
+
+function TelegramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-[17px] w-[17px] shrink-0"
+    >
+      <path
+        fill="currentColor"
+        d="M21.5 3.8 18.4 19c-.2 1.1-.9 1.4-1.8.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-8c.4-.3-.1-.5-.6-.2L6.2 12.9l-4.7-1.5c-1-.3-1-1 .2-1.5L20 2.8c.9-.3 1.7.2 1.5 1Z"
+      />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-[17px] w-[17px] shrink-0"
+    >
+      <path
+        d="M5 12h14M14 7l5 5-5 5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function MembersPreview() {
+  const t = useTranslations("Home");
+
+  return (
+    <div className="members-preview">
+      <div className="members-avatars">
+        {memberImages.map((member, index) => (
+          <div
+            key={member.src}
+            className="member-avatar"
+            style={{
+              zIndex: memberImages.length - index,
+            }}
+          >
+            <Image
+              src={member.src}
+              alt={member.alt}
+              fill
+              sizes="38px"
+              className="member-avatar-image"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="members-copy">
+        <div className="members-count">{t("hero.membersCount")}</div>
+
+        <div className="members-description">
+          {t("hero.membersDescription")}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CulturalAnimation() {
+  return (
+    <div className="cultural-scene" aria-hidden="true">
+      <div className="cultural-background-word">LATAM</div>
+
+      <div className="cultural-glow cultural-glow-one" />
+      <div className="cultural-glow cultural-glow-two" />
+
+      <div className="cultural-orbit cultural-orbit-one" />
+      <div className="cultural-orbit cultural-orbit-two" />
+      <div className="cultural-orbit cultural-orbit-three" />
+
+      <span className="cultural-spark cultural-spark-one">✦</span>
+      <span className="cultural-spark cultural-spark-two">✦</span>
+      <span className="cultural-spark cultural-spark-three">✦</span>
+      <span className="cultural-spark cultural-spark-four">✦</span>
+      <span className="cultural-spark cultural-spark-five">✦</span>
+
+      <span className="cultural-note cultural-note-one">♪</span>
+      <span className="cultural-note cultural-note-two">♫</span>
+      <span className="cultural-note cultural-note-three">♪</span>
+
+      <div className="cultural-hummingbird">
+        <span className="hummingbird-body" />
+        <span className="hummingbird-wing hummingbird-wing-left" />
+        <span className="hummingbird-wing hummingbird-wing-right" />
+        <span className="hummingbird-beak" />
+      </div>
+
+      <div className="cultural-guitar">
+        <span className="guitar-neck" />
+        <span className="guitar-head" />
+        <span className="guitar-body guitar-body-large" />
+        <span className="guitar-body guitar-body-small" />
+        <span className="guitar-hole" />
+        <span className="guitar-string" />
+      </div>
+
+      <div className="cultural-drum">
+        <span className="drum-top" />
+        <span className="drum-body" />
+        <span className="drum-line drum-line-left" />
+        <span className="drum-line drum-line-center" />
+        <span className="drum-line drum-line-right" />
+      </div>
+
+      <div className="cultural-maracas">
+        <span className="maraca maraca-left">
+          <span className="maraca-head" />
+          <span className="maraca-detail" />
+          <span className="maraca-handle" />
+        </span>
+
+        <span className="maraca maraca-right">
+          <span className="maraca-head" />
+          <span className="maraca-detail" />
+          <span className="maraca-handle" />
+        </span>
+      </div>
+
+      <div className="leaf-cluster leaf-cluster-left">
+        <span className="leaf leaf-one" />
+        <span className="leaf leaf-two" />
+        <span className="leaf leaf-three" />
+        <span className="leaf leaf-four" />
+        <span className="leaf-stem" />
+      </div>
+
+      <div className="leaf-cluster leaf-cluster-right">
+        <span className="leaf leaf-one" />
+        <span className="leaf leaf-two" />
+        <span className="leaf leaf-three" />
+        <span className="leaf leaf-four" />
+        <span className="leaf-stem" />
+      </div>
+
+      <div className="cultural-flower cultural-flower-left">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <span
+            key={index}
+            className={`flower-petal flower-petal-${index + 1}`}
+          />
+        ))}
+
+        <span className="flower-center" />
+      </div>
+
+      <div className="cultural-flower cultural-flower-right">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <span
+            key={index}
+            className={`flower-petal flower-petal-${index + 1}`}
+          />
+        ))}
+
+        <span className="flower-center" />
+      </div>
+
+      <div className="cultural-logo">
+        <div className="cultural-logo-ring cultural-logo-ring-outer" />
+        <div className="cultural-logo-ring cultural-logo-ring-middle" />
+        <div className="cultural-logo-ring cultural-logo-ring-inner" />
+
+        <div className="association-logo-frame">
+          <div className="association-logo-wrap">
+            <Image
+              src="/logo_latam.jpeg"
+              alt="Logo de la Asociación Latinoamericana"
+              fill
+              priority
+              sizes="(max-width: 640px) 150px, 230px"
+              className="association-logo-image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
-        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes drift { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
-        @keyframes ticker { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
-        @keyframes rotateSlow { from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
-        @keyframes scaleIn { from{ opacity:0; transform:scale(.94); } to{ opacity:1; transform:scale(1); } }
-        .hero-h1 { animation: fadeUp 0.6s 0.1s ease both; }
-        .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
-        .hero-desc { animation: fadeUp 0.6s 0.25s ease both; }
-        .hero-btns { animation: fadeUp 0.6s 0.3s ease both; }
-        .hero-right { animation: scaleIn 0.8s 0.2s ease both; }
-        .flag-1 { animation: drift 3s 0.0s ease-in-out infinite; }
-        .flag-2 { animation: drift 3s 0.5s ease-in-out infinite; }
-        .flag-3 { animation: drift 3s 1.0s ease-in-out infinite; }
-        .flag-4 { animation: drift 3s 1.5s ease-in-out infinite; }
-        .flag-5 { animation: drift 3s 2.0s ease-in-out infinite; }
-        .flag-6 { animation: drift 3s 2.5s ease-in-out infinite; }
-        .btn-main:hover { background: transparent !important; color: #C4622D !important; }
-        .btn-ghost:hover { border-color: #1C1A16 !important; }
-        .cormorant { font-family: 'Cormorant Garamond', serif !important; }
-        .dm-sans { font-family: 'DM Sans', sans-serif !important; }
-      `}</style>
-
-      <main className="dm-sans bg-[#FAF8F3] text-[#1C1A16]">
-        {/* HERO */}
-        <section className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left */}
-          <div className="flex flex-col justify-center px-8 lg:px-14 py-14 lg:py-20 border-b border-black/5">
-            <div className="text-[10px] font-medium tracking-[3px] uppercase text-[#C4622D] mb-5">
-              Казань · Россия — Asociación Latinoamericana
-            </div>
-            <h1 className="hero-h1 cormorant text-4xl lg:text-5xl font-light leading-[1.12] tracking-tight text-[#1C1A16] mb-3">
-              {t("hero.title")}
-            </h1>
-            <p className="hero-sub cormorant text-lg lg:text-xl font-light italic text-[#8C7B6B] mb-3">
-              {t("hero.subtitle")}
-            </p>
-            <p className="hero-desc text-sm font-light text-[#8C7B6B] leading-relaxed mb-10">
-              {t("hero.description")}
-            </p>
-            <div className="hero-btns flex flex-col sm:flex-row gap-3 max-w-sm">
-              <Link
-                href="https://t.me/asopaislatamkzm"
-                target="_blank"
-                className="btn-main text-center text-[11px] font-medium tracking-[2px] uppercase px-7 py-4 border border-[#C4622D] bg-[#C4622D] text-[#FAF8F3] transition-all duration-200"
-              >
-                {t("hero.joinButton")}
-              </Link>
-              <Link
-                href="/about"
-                className="btn-ghost text-center text-[11px] font-medium tracking-[2px] uppercase px-7 py-4 border border-black/20 bg-transparent text-[#1C1A16] transition-all duration-200"
-              >
-                {t("hero.learnMoreButton")}
-              </Link>
-            </div>
+    <main
+      className={`${bodyFont.variable} ${headingFont.variable} min-h-screen bg-[#FAF8F3] text-[#1C1A16]`}
+    >
+      <section className="hero-grid">
+        <div className="hero-content">
+          <div className="hero-eyebrow">
+            Казань · Россия — Asociación Latinoamericana
           </div>
 
-          {/* Right — solo en desktop */}
-          <div className="hero-right hidden lg:flex bg-[#F0EBE3] items-center justify-center relative overflow-hidden border-b border-black/5 min-h-[480px]">
-            <div className="cormorant text-[120px] font-light text-[#C4622D]/5 absolute whitespace-nowrap pointer-events-none select-none">
-              LATAM
-            </div>
-            <div className="relative z-10 text-center p-10">
-              <div className="w-[200px] h-[200px] relative mx-auto mb-6">
-                <div
-                  className="absolute inset-0 rounded-full border border-[#C4622D]/20"
-                  style={{ animation: "rotateSlow 30s linear infinite" }}
-                />
-                <div className="absolute inset-5 rounded-full border border-[#C4622D]/30" />
-                <div className="absolute inset-11 rounded-full bg-[#C4622D]/6 border border-[#C4622D]/25" />
-                <div className="absolute inset-0 flex items-center justify-center flex-wrap gap-1 p-14">
-                  <span className="flag-1 text-2xl block">🇨🇴</span>
-                  <span className="flag-2 text-2xl block">🇪🇨</span>
-                  <span className="flag-3 text-2xl block">🇻🇪</span>
-                  <span className="flag-4 text-2xl block">🇲🇽</span>
-                  <span className="flag-5 text-2xl block">🇵🇪</span>
-                  <span className="flag-6 text-2xl block">🇦🇷</span>
-                </div>
-              </div>
-              <div className="text-[10px] tracking-[3px] uppercase text-[#8C7B6B] font-light">
-                de paises latinoamericanos
-              </div>
-            </div>
-          </div>
-        </section>
+          <h1 className="hero-h1">{t("hero.title")}</h1>
 
-        {/* TICKER */}
-        <div className="border-y border-black/8 py-3 overflow-hidden bg-[#FAF8F3]">
-          <div
-            className="flex gap-12 whitespace-nowrap"
-            style={{ animation: "ticker 25s linear infinite" }}
-          >
-            {[...Array(2)].map((_, i) => (
-              <span key={i} className="flex gap-12">
-                {[
-                  "Integración Cultural",
-                  "Swing Latino",
-                  "Voces Andinas",
-                  "Comunidad de Apoyo",
-                  "КФУ · КИУ · КГЭУ · КГАСУ · КАИ",
-                  "Kazán · Rusia",
-                ].map((item, j) => (
-                  <span key={j} className="inline-flex gap-12 items-center">
-                    <span className="text-[10px] font-light text-[#8C7B6B] tracking-[2.5px] uppercase">
-                      {item}
-                    </span>
-                    <span className="text-[#C4622D] opacity-50">✦</span>
-                  </span>
-                ))}
-              </span>
-            ))}
+          <p className="hero-sub">{t("hero.subtitle")}</p>
+
+          <p className="hero-desc">{t("hero.description")}</p>
+
+          <div className="hero-btns">
+            <Link
+              href="https://t.me/asopaislatamkzm"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-main"
+            >
+              <TelegramIcon />
+              <span>{t("hero.joinButton")}</span>
+            </Link>
+
+            <Link href="/about" className="btn-ghost">
+              <span>{t("hero.learnMoreButton")}</span>
+              <ArrowIcon />
+            </Link>
           </div>
+
+          <MembersPreview />
         </div>
 
-        {/* FOOTER */}
-        <footer className="bg-[#FAF8F3] px-8 lg:px-14 py-10 border-t border-black/8">
-          <div className="text-[10px] font-medium tracking-[3px] uppercase text-[#C4622D] mb-2">
-            {t("footer.agenda")}
-          </div>
-          <h2 className="cormorant text-3xl font-light text-[#1C1A16] mb-8">
-            {t("footer.upcomingEvents")}{" "}
-            <em className="italic">{t("footer.events")}</em>
-          </h2>
-          <EventFooter />
-          <div className="mt-8 pt-6 border-t border-black/8 text-[11px] text-[#8C7B6B] tracking-wide">
-            {t("footer.text")}
-          </div>
-        </footer>
-      </main>
-    </>
+        <div className="hero-right">
+          <CulturalAnimation />
+        </div>
+      </section>
+
+      <div className="ticker-wrapper">
+        <div className="ticker-track">
+          {Array.from({ length: 2 }).map((_, groupIndex) => (
+            <span key={groupIndex} className="ticker-group">
+              {tickerItems.map((item) => (
+                <span key={`${groupIndex}-${item}`} className="ticker-item">
+                  <span>{item}</span>
+                  <span className="ticker-star">✦</span>
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <footer className="home-footer">
+        <div className="footer-eyebrow">{t("footer.agenda")}</div>
+
+        <h2 className="footer-title">
+          {t("footer.upcomingEvents")} <em>{t("footer.events")}</em>
+        </h2>
+
+        <EventFooter />
+
+        <div className="footer-credit">{t("footer.text")}</div>
+      </footer>
+    </main>
   );
 }

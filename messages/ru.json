@@ -16,7 +16,9 @@
       "subtitle": "Ты можешь положиться на нашу поддержку",
       "description": "Станьте частью нашего приключения",
       "joinButton": "Присоединиться в Telegram",
-      "learnMoreButton": "Узнать больше"
+      "learnMoreButton": "Узнать больше",
+      "membersCount": "225 участников",
+      "membersDescription": "со всей Латинской Америки"
     },
     "features": {
       "title": "Наши преимущества",

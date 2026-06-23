@@ -16,7 +16,10 @@
       "subtitle": "you can count on our support",
       "description": "be part of our adventure",
       "joinButton": "Join Telegram",
-      "learnMoreButton": "Learn More"
+      "learnMoreButton": "Learn More",
+
+      "membersCount": "225 members",
+      "membersDescription": "from all over Latin America"
     },
     "features": {
       "title": "Our Advantages",
