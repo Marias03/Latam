@@ -103,7 +103,7 @@ function DecorativeFigure({
         src={src}
         alt=""
         fill
-        sizes="320px"
+        sizes="(max-width: 560px) 100vw, 420px"
         className={styles.decorativeFigureImage}
         style={{
           objectPosition: position,
@@ -131,11 +131,19 @@ export default function CulturalIntegrationPage() {
       description2: t("swing.description2"),
       joinInfo: t("swing.joinInfo"),
 
-      imageSrc: "/baile.jpg",
+      /*
+       * El archivo en public se llama exactamente:
+       * public/Baile.jpg
+       */
+      imageSrc: "/Baile.jpg",
       imagePosition: "center",
 
       accentColor: "#C4622D",
 
+      /*
+       * Imagen nueva dentro de la tarjeta
+       * “¿Cómo participar?”
+       */
       decorativeImage: "/latam-swing-art.png",
       decorativePosition: "center",
     },
@@ -148,11 +156,19 @@ export default function CulturalIntegrationPage() {
       description2: t("voces.description2"),
       joinInfo: t("voces.joinInfo"),
 
-      imageSrc: "/canto.jpg",
+      /*
+       * El archivo en public se llama exactamente:
+       * public/Canto.jpg
+       */
+      imageSrc: "/Canto.jpg",
       imagePosition: "center",
 
       accentColor: "#2F7656",
 
+      /*
+       * Imagen nueva dentro de la tarjeta
+       * “¿Cómo participar?”
+       */
       decorativeImage: "/latam-voces-art.png",
       decorativePosition: "center",
     },
@@ -244,7 +260,7 @@ export default function CulturalIntegrationPage() {
         <div className={styles.programLayout}>
           <div className={styles.programVisual}>
             <div
-              key={`image-${activeProgram}`}
+              key={`program-image-${activeProgram}`}
               className={styles.programImageContainer}
             >
               <ProgramImage
@@ -264,7 +280,7 @@ export default function CulturalIntegrationPage() {
           </div>
 
           <div
-            key={`content-${activeProgram}`}
+            key={`program-content-${activeProgram}`}
             className={styles.programContent}
           >
             <div className={styles.programEyebrow}>
@@ -293,7 +309,9 @@ export default function CulturalIntegrationPage() {
                   className={styles.contactButton}
                 >
                   <TelegramIcon />
+
                   <span>{t("contactButton")}</span>
+
                   <ArrowIcon />
                 </Link>
               </div>
