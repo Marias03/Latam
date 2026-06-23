@@ -1,552 +1,324 @@
-import { useTranslations } from "next-intl";
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
-import Image1 from "@/../public/Baile.jpg";
-import Image2 from "@/../public/Canto.jpg";
+import Link from "next/link";
+import { useState, type CSSProperties } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { bodyFont, headingFont } from "@/app/fonts";
+import styles from "./IntegrationPage.module.css";
+
+type ProgramKey = "swing" | "voces";
+
+type ProgramData = {
+  label: string;
+  title: string;
+  imageAlt: string;
+  description1: string;
+  description2: string;
+  joinInfo: string;
+  imageSrc: string;
+  imagePosition: string;
+  accentColor: string;
+  decorativeImage: string;
+  decorativePosition: string;
+};
+
+function MusicIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.icon}>
+      <path
+        d="M9 18V5l11-2v13M9 9l11-2M6.5 21C4.6 21 3 19.9 3 18.5S4.6 16 6.5 16 10 17.1 10 18.5 8.4 21 6.5 21Zm11 0c-1.9 0-3.5-1.1-3.5-2.5s1.6-2.5 3.5-2.5 3.5 1.1 3.5 2.5-1.6 2.5-3.5 2.5Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function TelegramIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.icon}>
+      <path
+        fill="currentColor"
+        d="M21.5 3.8 18.4 19c-.2 1.1-.9 1.4-1.8.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-8c.4-.3-.1-.5-.6-.2L6.2 12.9l-4.7-1.5c-1-.3-1-1 .2-1.5L20 2.8c.9-.3 1.7.2 1.5 1Z"
+      />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.icon}>
+      <path
+        d="M5 12h14M14 7l5 5-5 5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ProgramImage({
+  src,
+  alt,
+  position,
+}: {
+  src: string;
+  alt: string;
+  position: string;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      priority
+      sizes="(max-width: 850px) 100vw, 48vw"
+      className={styles.programImage}
+      style={{
+        objectPosition: position,
+      }}
+    />
+  );
+}
+
+function DecorativeFigure({
+  src,
+  position,
+}: {
+  src: string;
+  position: string;
+}) {
+  return (
+    <div className={styles.decorativeFigure} aria-hidden="true">
+      <div className={styles.figureGlow} />
+
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes="320px"
+        className={styles.decorativeFigureImage}
+        style={{
+          objectPosition: position,
+        }}
+      />
+
+      <span className={styles.figureNote}>♪</span>
+      <span className={styles.figureSpark}>✦</span>
+    </div>
+  );
+}
 
 export default function CulturalIntegrationPage() {
   const t = useTranslations("CulturalIntegration");
+  const locale = useLocale();
+
+  const [activeProgram, setActiveProgram] = useState<ProgramKey>("swing");
+
+  const programs: Record<ProgramKey, ProgramData> = {
+    swing: {
+      label: t("nav.swing"),
+      title: t("swing.title"),
+      imageAlt: t("swing.imageAlt"),
+      description1: t("swing.description1"),
+      description2: t("swing.description2"),
+      joinInfo: t("swing.joinInfo"),
+
+      imageSrc: "/baile.jpg",
+      imagePosition: "center",
+
+      accentColor: "#C4622D",
+
+      decorativeImage: "/latam-swing-art.png",
+      decorativePosition: "center",
+    },
+
+    voces: {
+      label: t("nav.voces"),
+      title: t("voces.title"),
+      imageAlt: t("voces.imageAlt"),
+      description1: t("voces.description1"),
+      description2: t("voces.description2"),
+      joinInfo: t("voces.joinInfo"),
+
+      imageSrc: "/canto.jpg",
+      imagePosition: "center",
+
+      accentColor: "#2F7656",
+
+      decorativeImage: "/latam-voces-art.png",
+      decorativePosition: "center",
+    },
+  };
+
+  const activeContent = programs[activeProgram];
 
   return (
-    <div
-      style={{
-        fontFamily: "'DM Sans', sans-serif",
-        background: "#FAF8F3",
-        color: "#1C1A16",
-      }}
+    <main
+      className={`${bodyFont.variable} ${headingFont.variable} ${styles.page}`}
+      style={
+        {
+          "--active-color": activeContent.accentColor,
+        } as CSSProperties
+      }
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap');
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-        @keyframes glow { 0%,100%{opacity:0.08} 50%{opacity:0.15} }
-        .emoji-float { animation: float 3s ease-in-out infinite; display:inline-block; font-size:48px }
-        .ef2 { animation-delay: 0.5s }
-        .ef3 { animation-delay: 1s }
-        .tg-btn-swing:hover { opacity: 0.85 }
-        .tg-btn-voces:hover { opacity: 0.85 }
-        .hl-swing:hover { background: rgba(196,98,45,0.35) !important }
-        .hl-voces:hover { background: rgba(26,107,58,0.35) !important }
-        .img-hover:hover { transform: scale(1.03); transition: transform 0.5s }
-      `}</style>
-
-      {/* HERO */}
-      <section
-        style={{
-          background:
-            "linear-gradient(135deg,#1A0800 0%,#2D1200 50%,#0A1A10 100%)",
-          padding: "56px 48px",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "48px",
-          alignItems: "center",
-          position: "relative",
-          overflow: "hidden",
-          minHeight: "320px",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            width: "280px",
-            height: "280px",
-            borderRadius: "50%",
-            background: "#FF6B00",
-            filter: "blur(80px)",
-            opacity: 0.1,
-            top: "-80px",
-            right: "60px",
-            animation: "glow 4s ease-in-out infinite",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "200px",
-            height: "200px",
-            borderRadius: "50%",
-            background: "#00C48C",
-            filter: "blur(70px)",
-            opacity: 0.08,
-            bottom: "-60px",
-            left: "160px",
-            animation: "glow 3s 1s ease-in-out infinite",
-            pointerEvents: "none",
-          }}
+      <section className={styles.hero}>
+        <Image
+          src="/cultural-integration-hero.png"
+          alt={t("title")}
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroImage}
         />
 
-        <div style={{ zIndex: 2 }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              background: "rgba(255,107,0,0.15)",
-              color: "#FF9F50",
-              fontSize: "11px",
-              fontWeight: 500,
-              padding: "4px 12px",
-              borderRadius: "20px",
-              marginBottom: "14px",
-              border: "0.5px solid rgba(255,107,0,0.3)",
-            }}
-          >
-            🎭 ASOPAIS LATAM · {t("title")}
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroLight} />
+
+        <div className={styles.heroDecorations} aria-hidden="true">
+          <span className={`${styles.note} ${styles.noteOne}`}>♪</span>
+
+          <span className={`${styles.note} ${styles.noteTwo}`}>♫</span>
+
+          <span className={`${styles.note} ${styles.noteThree}`}>♪</span>
+
+          <span className={`${styles.spark} ${styles.sparkOne}`}>✦</span>
+
+          <span className={`${styles.spark} ${styles.sparkTwo}`}>✦</span>
+
+          <span className={`${styles.spark} ${styles.sparkThree}`}>✦</span>
+        </div>
+
+        <div className={styles.heroContent}>
+          <div className={styles.heroEyebrow}>
+            <span />
+            {t("nav.title")}
           </div>
-          <h1
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "42px",
-              fontWeight: 300,
-              color: "#fff",
-              lineHeight: 1.2,
-              marginBottom: "10px",
-            }}
-          >
-            <span style={{ color: "#FF6B00", fontStyle: "italic" }}>
-              {t("title")}
+
+          <h1 className={styles.heroTitle}>{t("title")}</h1>
+
+          <p className={styles.heroSubtitle}>{t("subtitle")}</p>
+
+          <div className={styles.heroProgramButtons}>
+            <button
+              type="button"
+              className={`${styles.heroProgramButton} ${
+                activeProgram === "swing" ? styles.heroProgramButtonActive : ""
+              }`}
+              onClick={() => setActiveProgram("swing")}
+            >
+              <MusicIcon />
+              <span>{t("nav.swing")}</span>
+            </button>
+
+            <button
+              type="button"
+              className={`${styles.heroProgramButton} ${
+                activeProgram === "voces" ? styles.heroProgramButtonActive : ""
+              }`}
+              onClick={() => setActiveProgram("voces")}
+            >
+              <MusicIcon />
+              <span>{t("nav.voces")}</span>
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.heroWave} aria-hidden="true" />
+      </section>
+
+      <section className={styles.programSection}>
+        <div className={styles.backgroundDecoration} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className={styles.programLayout}>
+          <div className={styles.programVisual}>
+            <div
+              key={`image-${activeProgram}`}
+              className={styles.programImageContainer}
+            >
+              <ProgramImage
+                src={activeContent.imageSrc}
+                alt={activeContent.imageAlt}
+                position={activeContent.imagePosition}
+              />
+
+              <div className={styles.programImageOverlay} />
+            </div>
+
+            <div className={styles.programVisualOrbit} />
+
+            <span className={styles.programFloatingNote} aria-hidden="true">
+              ♪
             </span>
-          </h1>
-          <p
-            style={{
-              fontSize: "14px",
-              color: "rgba(255,255,255,0.5)",
-              lineHeight: 1.7,
-              maxWidth: "380px",
-              marginBottom: "20px",
-            }}
-          >
-            {t("subtitle")}
-          </p>
-          <div style={{ display: "flex", gap: "12px" }}>
-            <a
-              href="#swing"
-              style={{
-                padding: "8px 18px",
-                borderRadius: "20px",
-                fontSize: "12px",
-                fontWeight: 500,
-                background: "rgba(196,98,45,0.2)",
-                color: "#FF9F50",
-                border: "0.5px solid rgba(196,98,45,0.4)",
-                textDecoration: "none",
-              }}
-              className="hl-swing"
-            >
-              💃 {t("nav.swing")}
-            </a>
-            <a
-              href="#voces"
-              style={{
-                padding: "8px 18px",
-                borderRadius: "20px",
-                fontSize: "12px",
-                fontWeight: 500,
-                background: "rgba(26,107,58,0.2)",
-                color: "#4FC87A",
-                border: "0.5px solid rgba(26,107,58,0.4)",
-                textDecoration: "none",
-              }}
-              className="hl-voces"
-            >
-              🎶 {t("nav.voces")}
-            </a>
           </div>
-        </div>
 
-        <div
-          style={{
-            zIndex: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "20px",
-          }}
-        >
-          <span className="emoji-float">💃</span>
-          <span className="emoji-float ef2">🎷</span>
-          <span className="emoji-float ef3">🥁</span>
-        </div>
-      </section>
-
-      {/* SUBNAV */}
-      <div
-        style={{
-          background: "#fff",
-          borderBottom: "1px solid rgba(28,26,22,0.08)",
-          display: "flex",
-          padding: "0 48px",
-        }}
-      >
-        <a
-          href="#swing"
-          style={{
-            padding: "16px 0",
-            marginRight: "28px",
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "1.5px",
-            textTransform: "uppercase",
-            color: "#C4622D",
-            borderBottom: "2px solid #C4622D",
-            textDecoration: "none",
-          }}
-        >
-          {t("nav.swing")}
-        </a>
-        <a
-          href="#voces"
-          style={{
-            padding: "16px 0",
-            marginRight: "28px",
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "1.5px",
-            textTransform: "uppercase",
-            color: "rgba(28,26,22,0.35)",
-            borderBottom: "2px solid transparent",
-            textDecoration: "none",
-          }}
-        >
-          {t("nav.voces")}
-        </a>
-      </div>
-
-      {/* SWING LATINO */}
-      <section
-        id="swing"
-        style={{
-          padding: "56px 48px",
-          background: "#fff",
-          scrollMarginTop: "56px",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "48px",
-            alignItems: "center",
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
           <div
-            style={{
-              position: "relative",
-              borderRadius: "16px",
-              overflow: "hidden",
-              border: "2px solid rgba(196,98,45,0.25)",
-              aspectRatio: "4/3",
-            }}
+            key={`content-${activeProgram}`}
+            className={styles.programContent}
           >
-            <Image
-              src={Image1}
-              alt={t("swing.imageAlt")}
-              fill
-              className="img-hover"
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-8px",
-                right: "-8px",
-                padding: "8px 16px",
-                borderRadius: "10px",
-                fontSize: "11px",
-                fontWeight: 500,
-                color: "#fff",
-                background: "#C4622D",
-                transform: "rotate(2deg)",
-              }}
-            >
-              ¡BAILA CON EL ALMA!
+            <div className={styles.programEyebrow}>
+              <span />
+              {activeContent.label}
+              <span />
             </div>
-          </div>
-          <div>
-            <div
-              style={{
-                fontSize: "10px",
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#C4622D",
-                marginBottom: "8px",
-              }}
-            >
-              {t("nav.swing")}
+
+            <h2 className={styles.programTitle}>{activeContent.title}</h2>
+
+            <div className={styles.programDescriptions}>
+              <p>{activeContent.description1}</p>
+              <p>{activeContent.description2}</p>
             </div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "32px",
-                fontWeight: 300,
-                marginBottom: "14px",
-                lineHeight: 1.2,
-              }}
-            >
-              {t("swing.title")}
-            </h2>
-            <p
-              style={{
-                fontSize: "14px",
-                fontWeight: 300,
-                color: "#5F5E5A",
-                lineHeight: 1.8,
-                marginBottom: "12px",
-              }}
-            >
-              {t("swing.description1")}
-            </p>
-            <p
-              style={{
-                fontSize: "14px",
-                fontWeight: 300,
-                color: "#5F5E5A",
-                lineHeight: 1.8,
-                marginBottom: "20px",
-              }}
-            >
-              {t("swing.description2")}
-            </p>
-            <div
-              style={{
-                background: "rgba(196,98,45,0.06)",
-                borderLeft: "3px solid #C4622D",
-                borderRadius: "12px",
-                padding: "18px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#C4622D",
-                  marginBottom: "6px",
-                }}
-              >
-                {t("howToJoin")}
+
+            <div className={styles.joinCard}>
+              <div className={styles.joinCardText}>
+                <span className={styles.joinLabel}>{t("howToJoin")}</span>
+
+                <p>{activeContent.joinInfo}</p>
+
+                <Link
+                  href="https://t.me/asopaislatamkzm"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.contactButton}
+                >
+                  <TelegramIcon />
+                  <span>{t("contactButton")}</span>
+                  <ArrowIcon />
+                </Link>
               </div>
-              <p
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 300,
-                  color: "#5F5E5A",
-                  lineHeight: 1.6,
-                  marginBottom: "12px",
-                }}
-              >
-                {t("swing.joinInfo")}
-              </p>
-              <Link
-                href="tg://resolve?domain=@andrealibonatti"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "9px 18px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#1A4EA6",
-                  background: "rgba(26,78,166,0.1)",
-                  border: "0.5px solid rgba(26,78,166,0.3)",
-                  textDecoration: "none",
-                }}
-                className="tg-btn-swing"
-              >
-                ✈ {t("contactButton")}
-              </Link>
+
+              <DecorativeFigure
+                src={activeContent.decorativeImage}
+                position={activeContent.decorativePosition}
+              />
             </div>
+
+            <Link href={`/${locale}`} className={styles.homeLink}>
+              <span aria-hidden="true">←</span>
+              {t("footer.homeLink")}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* VOCES ANDINAS */}
-      <section
-        id="voces"
-        style={{
-          padding: "56px 48px",
-          background: "#FAF8F3",
-          scrollMarginTop: "56px",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "48px",
-            alignItems: "center",
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              order: 2,
-              position: "relative",
-              borderRadius: "16px",
-              overflow: "hidden",
-              border: "2px solid rgba(26,107,58,0.25)",
-              aspectRatio: "4/3",
-            }}
-          >
-            <Image
-              src={Image2}
-              alt={t("voces.imageAlt")}
-              fill
-              className="img-hover"
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-8px",
-                left: "-8px",
-                padding: "8px 16px",
-                borderRadius: "10px",
-                fontSize: "11px",
-                fontWeight: 500,
-                color: "#fff",
-                background: "#1A6B3A",
-                transform: "rotate(-2deg)",
-              }}
-            >
-              ¡SIENTE LA MÚSICA!
-            </div>
-          </div>
-          <div style={{ order: 1 }}>
-            <div
-              style={{
-                fontSize: "10px",
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#1A6B3A",
-                marginBottom: "8px",
-              }}
-            >
-              {t("nav.voces")}
-            </div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "32px",
-                fontWeight: 300,
-                marginBottom: "14px",
-                lineHeight: 1.2,
-              }}
-            >
-              {t("voces.title")}
-            </h2>
-            <p
-              style={{
-                fontSize: "14px",
-                fontWeight: 300,
-                color: "#5F5E5A",
-                lineHeight: 1.8,
-                marginBottom: "12px",
-              }}
-            >
-              {t("voces.description1")}
-            </p>
-            <p
-              style={{
-                fontSize: "14px",
-                fontWeight: 300,
-                color: "#5F5E5A",
-                lineHeight: 1.8,
-                marginBottom: "20px",
-              }}
-            >
-              {t("voces.description2")}
-            </p>
-            <div
-              style={{
-                background: "rgba(26,107,58,0.06)",
-                borderLeft: "3px solid #1A6B3A",
-                borderRadius: "12px",
-                padding: "18px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#1A6B3A",
-                  marginBottom: "6px",
-                }}
-              >
-                {t("howToJoin")}
-              </div>
-              <p
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 300,
-                  color: "#5F5E5A",
-                  lineHeight: 1.6,
-                  marginBottom: "12px",
-                }}
-              >
-                {t("voces.joinInfo")}
-              </p>
-              <Link
-                href="tg://resolve?domain=@SaulAndresn"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "9px 18px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#1A4EA6",
-                  background: "rgba(26,78,166,0.1)",
-                  border: "0.5px solid rgba(26,78,166,0.3)",
-                  textDecoration: "none",
-                }}
-                className="tg-btn-voces"
-              >
-                ✈ {t("contactButton")}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <footer className={styles.footer}>
+        <span>{t("footer.text")}</span>
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          background: "linear-gradient(135deg,#1A0800,#0A1A10)",
-          padding: "28px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", gap: "12px" }}>
-          {["🎻", "🎺", "🪕", "🎤", "🪘"].map((e, i) => (
-            <span key={i} style={{ fontSize: "20px", cursor: "pointer" }}>
-              {e}
-            </span>
-          ))}
-        </div>
-        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
-          {t("footer.text")}
-        </span>
-        <Link
-          href="/"
-          style={{
-            fontSize: "12px",
-            color: "rgba(255,255,255,0.4)",
-            textDecoration: "none",
-          }}
-        >
-          ← {t("footer.homeLink")}
-        </Link>
+        <span className={styles.footerDivider}>✦</span>
+
+        <span>{t("nav.slogan")}</span>
       </footer>
-    </div>
+    </main>
   );
 }
