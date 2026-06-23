@@ -1,225 +1,470 @@
 "use client";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
 
-export default function AboutPage() {
-  const t = useTranslations("About");
+import Image from "next/image";
+import Link from "next/link";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { bodyFont, headingFont } from "@/app/fonts";
+import styles from "./AboutPage.module.css";
+
+const SECTION_COLORS = ["#C4622D", "#E8A020", "#2F7656", "#5677D6"];
+
+const TIMELINE_COLORS = ["#C4622D", "#E8A020", "#2F7656"];
+
+const CAROUSEL_IMAGES = [
+  "/about-carousel-dance.png",
+  "/about-carousel-music.png",
+  "/about-carousel-community.png",
+  "/about-carousel-sports.png",
+];
+
+const SECTION_DURATION = 6500;
+const IMAGE_DURATION = 4500;
+
+type Milestone = {
+  year: string;
+  text: string;
+};
+
+type ValueItem = {
+  name: string;
+  description: string;
+};
+
+type AboutSlide = {
+  tag: string;
+  title: string;
+  paragraphs: string[];
+  statement: string | null;
+  milestones: Milestone[];
+  values: ValueItem[];
+};
+
+function CarouselVisual({
+  imageAlt,
+  accentColor,
+}: {
+  imageAlt: string;
+  accentColor: string;
+}) {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const imageTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startImageTimer = useCallback(() => {
+    if (imageTimerRef.current) {
+      clearInterval(imageTimerRef.current);
+    }
+
+    imageTimerRef.current = setInterval(() => {
+      setCurrentImage((previous) => {
+        return (previous + 1) % CAROUSEL_IMAGES.length;
+      });
+    }, IMAGE_DURATION);
+  }, []);
+
+  useEffect(() => {
+    startImageTimer();
+
+    return () => {
+      if (imageTimerRef.current) {
+        clearInterval(imageTimerRef.current);
+      }
+    };
+  }, [startImageTimer]);
+
+  const selectImage = (index: number) => {
+    setCurrentImage(index);
+    startImageTimer();
+  };
+
+  const previousImage = () => {
+    setCurrentImage((previous) => {
+      return (previous - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length;
+    });
+
+    startImageTimer();
+  };
+
+  const nextImage = () => {
+    setCurrentImage((previous) => {
+      return (previous + 1) % CAROUSEL_IMAGES.length;
+    });
+
+    startImageTimer();
+  };
 
   return (
     <div
-      style={{
-        background:
-          "linear-gradient(135deg,#1A0800 0%,#2D1200 50%,#0A1A10 100%)",
-        minHeight: "calc(100vh - 56px)",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        alignItems: "center",
-        padding: "48px",
-        position: "relative",
-        overflow: "hidden",
-        fontFamily: "'DM Sans', sans-serif",
-      }}
+      className={styles.carouselScene}
+      style={
+        {
+          "--accent-color": accentColor,
+        } as CSSProperties
+      }
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap');
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        @keyframes spin1 { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
-        @keyframes spin2 { 0%{transform:rotate(0deg)} 100%{transform:rotate(-360deg)} }
-        @keyframes glow { 0%,100%{opacity:0.08} 50%{opacity:0.15} }
-      `}</style>
+      <div className={styles.carouselGlow} />
 
-      {/* Glows */}
-      <div
-        style={{
-          position: "absolute",
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background: "#FF6B00",
-          filter: "blur(90px)",
-          opacity: 0.1,
-          top: "-80px",
-          right: "80px",
-          animation: "glow 4s ease-in-out infinite",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          background: "#00C48C",
-          filter: "blur(70px)",
-          opacity: 0.08,
-          bottom: "-60px",
-          left: "200px",
-          animation: "glow 3s 1s ease-in-out infinite",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          width: "150px",
-          height: "150px",
-          borderRadius: "50%",
-          background: "#FFD700",
-          filter: "blur(60px)",
-          opacity: 0.07,
-          top: "10px",
-          right: "10px",
-          animation: "glow 5s 0.5s ease-in-out infinite",
-          pointerEvents: "none",
-        }}
-      />
+      <div className={`${styles.carouselOrbit} ${styles.carouselOrbitOne}`} />
 
-      {/* Logo animado */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 2,
-        }}
+      <div className={`${styles.carouselOrbit} ${styles.carouselOrbitTwo}`} />
+
+      <span
+        className={`${styles.carouselNote} ${styles.carouselNoteOne}`}
+        aria-hidden="true"
       >
-        <div
-          style={{
-            position: "relative",
-            width: "240px",
-            height: "240px",
-            animation: "float 4s ease-in-out infinite",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: "-12px",
-              borderRadius: "50%",
-              border: "1.5px solid rgba(255,107,0,0.4)",
-              animation: "spin1 8s linear infinite",
-            }}
+        ♪
+      </span>
+
+      <span
+        className={`${styles.carouselNote} ${styles.carouselNoteTwo}`}
+        aria-hidden="true"
+      >
+        ♫
+      </span>
+
+      <span
+        className={`${styles.carouselNote} ${styles.carouselNoteThree}`}
+        aria-hidden="true"
+      >
+        ♪
+      </span>
+
+      <span
+        className={`${styles.carouselSpark} ${styles.carouselSparkOne}`}
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+
+      <span
+        className={`${styles.carouselSpark} ${styles.carouselSparkTwo}`}
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+
+      <span
+        className={`${styles.carouselSpark} ${styles.carouselSparkThree}`}
+        aria-hidden="true"
+      >
+        ✦
+      </span>
+
+      <div className={styles.carouselImageArea}>
+        <div key={currentImage} className={styles.carouselImageAnimation}>
+          <Image
+            src={CAROUSEL_IMAGES[currentImage]}
+            alt=""
+            fill
+            priority={currentImage === 0}
+            sizes="(max-width: 900px) 100vw, 52vw"
+            className={styles.carouselImage}
           />
-          <div
-            style={{
-              position: "absolute",
-              inset: "-24px",
-              borderRadius: "50%",
-              border: "1px dashed rgba(255,215,0,0.25)",
-              animation: "spin2 12s linear infinite",
-            }}
-          />
-          <div
-            style={{
-              width: "240px",
-              height: "240px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "3px solid rgba(255,107,0,0.5)",
-              position: "relative",
-            }}
-          >
-            <Image
-              src="/logo_latam.jpeg"
-              alt="Logo ASOPAIS LATAM"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
         </div>
       </div>
 
-      {/* Texto */}
-      <div style={{ zIndex: 2 }}>
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            background: "rgba(255,107,0,0.15)",
-            color: "#FF9F50",
-            fontSize: "11px",
-            fontWeight: 500,
-            padding: "4px 12px",
-            borderRadius: "20px",
-            marginBottom: "16px",
-            border: "0.5px solid rgba(255,107,0,0.3)",
-          }}
-        >
-          🌎 ASOPAIS LATAM · Kazán, Rusia
-        </div>
-        <h1
-          style={{
-            fontFamily: "'Cormorant Garamond',serif",
-            fontSize: "52px",
-            fontWeight: 300,
-            color: "#fff",
-            lineHeight: 1.2,
-            marginBottom: "14px",
-          }}
-        >
-          {t("introTitle").split(" ")[0]}{" "}
-          <span style={{ color: "#FF6B00", fontStyle: "italic" }}>
-            nosotros
-          </span>
-          <br />y nuestra{" "}
-          <span style={{ color: "#00C48C", fontStyle: "italic" }}>
-            historia
-          </span>
-        </h1>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.5)",
-            lineHeight: 1.7,
-            maxWidth: "400px",
-            marginBottom: "28px",
-          }}
-        >
-          {t("introText1")} {t("introText2")}
-        </p>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {[
-            { n: "2022", l: "fundación" },
-            { n: "7", l: "universidades" },
-            { n: "3", l: "años" },
-          ].map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center" }}>
-              {i > 0 && (
-                <div
-                  style={{
-                    width: "1px",
-                    height: "32px",
-                    background: "rgba(255,255,255,0.1)",
-                    margin: "0 20px",
-                  }}
-                />
-              )}
-              <div>
-                <div
-                  style={{
-                    fontSize: "26px",
-                    fontWeight: 500,
-                    color: "#FFD700",
-                  }}
-                >
-                  {s.n}
-                </div>
-                <div
-                  style={{
-                    fontSize: "11px",
-                    color: "rgba(255,255,255,0.3)",
-                    marginTop: "2px",
-                  }}
-                >
-                  {s.l}
-                </div>
-              </div>
-            </div>
-          ))}
+      <button
+        type="button"
+        className={`${styles.carouselArrow} ${styles.carouselArrowLeft}`}
+        onClick={previousImage}
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+
+      <button
+        type="button"
+        className={`${styles.carouselArrow} ${styles.carouselArrowRight}`}
+        onClick={nextImage}
+        aria-label="Next image"
+      >
+        ›
+      </button>
+
+      <div className={styles.carouselDots}>
+        {CAROUSEL_IMAGES.map((image, index) => (
+          <button
+            key={image}
+            type="button"
+            className={`${styles.carouselDot} ${
+              currentImage === index ? styles.carouselDotActive : ""
+            }`}
+            onClick={() => selectImage(index)}
+            aria-label={`Image ${index + 1}`}
+          >
+            <span />
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.carouselLogo}>
+        <div className={styles.carouselLogoGlow} />
+        <div className={styles.carouselLogoOrbit} />
+
+        <div className={styles.carouselLogoImageWrap}>
+          <Image
+            src="/logo_latam.jpeg"
+            alt={imageAlt}
+            fill
+            priority
+            sizes="130px"
+            className={styles.carouselLogoImage}
+          />
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AboutPage() {
+  const t = useTranslations("About");
+  const locale = useLocale();
+
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const sectionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const slides: AboutSlide[] = [
+    {
+      tag: t("nav.history"),
+      title: t("history.title"),
+      paragraphs: [t("history.content1"), t("history.content2")],
+      statement: null,
+      milestones: [
+        {
+          year: "2022",
+          text: t("history.milestone1").replace("2022: ", ""),
+        },
+        {
+          year: "2024",
+          text: t("history.milestone2").replace("2024: ", ""),
+        },
+        {
+          year: "2025",
+          text: t("history.milestone3").replace("2025: ", ""),
+        },
+      ],
+      values: [],
+    },
+    {
+      tag: t("nav.mission"),
+      title: t("mission.title"),
+      paragraphs: [],
+      statement: t("mission.statement"),
+      milestones: [],
+      values: [],
+    },
+    {
+      tag: t("nav.vision"),
+      title: t("vision.title"),
+      paragraphs: [],
+      statement: t("vision.statement"),
+      milestones: [],
+      values: [],
+    },
+    {
+      tag: t("nav.values"),
+      title: t("values.title"),
+      paragraphs: [],
+      statement: null,
+      milestones: [],
+      values: [
+        {
+          name: t("values.value1Title"),
+          description: t("values.value1Desc"),
+        },
+        {
+          name: t("values.value2Title"),
+          description: t("values.value2Desc"),
+        },
+        {
+          name: t("values.value3Title"),
+          description: t("values.value3Desc"),
+        },
+        {
+          name: t("values.value4Title"),
+          description: t("values.value4Desc"),
+        },
+        {
+          name: t("values.value5Title"),
+          description: t("values.value5Desc"),
+        },
+      ],
+    },
+  ];
+
+  const startSectionTimer = useCallback(() => {
+    if (sectionTimerRef.current) {
+      clearInterval(sectionTimerRef.current);
+    }
+
+    sectionTimerRef.current = setInterval(() => {
+      setCurrentSection((previous) => {
+        return (previous + 1) % 4;
+      });
+    }, SECTION_DURATION);
+  }, []);
+
+  useEffect(() => {
+    startSectionTimer();
+
+    return () => {
+      if (sectionTimerRef.current) {
+        clearInterval(sectionTimerRef.current);
+      }
+    };
+  }, [startSectionTimer]);
+
+  const selectSection = (index: number) => {
+    setCurrentSection(index);
+    startSectionTimer();
+  };
+
+  const slide = slides[currentSection];
+  const accentColor = SECTION_COLORS[currentSection];
+
+  return (
+    <main
+      className={`${bodyFont.variable} ${headingFont.variable} ${styles.page}`}
+    >
+      <div className={styles.backgroundGlowOne} />
+      <div className={styles.backgroundGlowTwo} />
+
+      <section className={styles.layout}>
+        <div className={styles.visualColumn}>
+          <CarouselVisual imageAlt={t("imageAlt")} accentColor={accentColor} />
+        </div>
+
+        <div className={styles.contentColumn}>
+          <Link href={`/${locale}`} className={styles.backLink}>
+            <span aria-hidden="true">←</span>
+            {t("footer.homeLink")}
+          </Link>
+
+          <nav className={styles.tabs} aria-label={t("title")}>
+            {slides.map((item, index) => {
+              const isActive = index === currentSection;
+
+              return (
+                <button
+                  key={`${item.tag}-${index}`}
+                  type="button"
+                  className={`${styles.tab} ${
+                    isActive ? styles.tabActive : ""
+                  }`}
+                  style={
+                    {
+                      "--tab-color": SECTION_COLORS[index],
+                    } as CSSProperties
+                  }
+                  onClick={() => selectSection(index)}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  <span>{item.tag}</span>
+
+                  {isActive && (
+                    <span
+                      key={`progress-${currentSection}`}
+                      className={styles.tabProgress}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+          <article
+            key={currentSection}
+            className={styles.slide}
+            style={
+              {
+                "--accent-color": accentColor,
+              } as CSSProperties
+            }
+          >
+            <div className={styles.slideTag}>
+              <span />
+              {slide.tag}
+            </div>
+
+            <h1 className={styles.slideTitle}>{slide.title}</h1>
+
+            {slide.paragraphs.length > 0 && (
+              <div className={styles.historyText}>
+                {slide.paragraphs.map((paragraph, index) => (
+                  <p key={`${index}-${paragraph}`}>{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            {slide.statement && (
+              <blockquote className={styles.statement}>
+                “{slide.statement}”
+              </blockquote>
+            )}
+
+            {slide.milestones.length > 0 && (
+              <div className={styles.timeline}>
+                {slide.milestones.map((milestone, index) => (
+                  <article
+                    key={`${milestone.year}-${index}`}
+                    className={styles.milestoneCard}
+                    style={
+                      {
+                        "--milestone-color": TIMELINE_COLORS[index],
+                      } as CSSProperties
+                    }
+                  >
+                    <div className={styles.timelineMarker}>
+                      <span className={styles.timelineDot} />
+
+                      {index < slide.milestones.length - 1 && (
+                        <span className={styles.timelineLine} />
+                      )}
+                    </div>
+
+                    <span className={styles.milestoneYear}>
+                      {milestone.year}
+                    </span>
+
+                    <p className={styles.milestoneText}>{milestone.text}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {slide.values.length > 0 && (
+              <div className={styles.valuesGrid}>
+                {slide.values.map((value, index) => (
+                  <article
+                    key={`${value.name}-${index}`}
+                    className={styles.valueCard}
+                    style={
+                      {
+                        "--value-color":
+                          SECTION_COLORS[index % SECTION_COLORS.length],
+                      } as CSSProperties
+                    }
+                  >
+                    <span className={styles.valueAccent} />
+
+                    <h2>{value.name}</h2>
+
+                    <p>{value.description}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </article>
+        </div>
+      </section>
+    </main>
   );
 }
